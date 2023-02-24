@@ -5,19 +5,21 @@ class CashRegister:
         self.discount = discount
         self.total = total
         self.items = []
+        self.last_price = 0
 
 
-    # items = []
+
     def add_item(self, item, price, quantity=1):
         self.quantity = quantity
         self.total += price*quantity
+        self.last_price = price*quantity
         for i in range(quantity):
             self.items.append(item)
-
         # self.items.append(item)
         return self.items
 
-        
+    def void_last_transaction(self):
+        self.total -= self.last_price
 
 
     def apply_discount(self, discount=0):
@@ -29,6 +31,8 @@ class CashRegister:
             self.total -= discount_conversion
             # round(self.total, 0)
             print(f"After the discount, the total comes to ${self.total}.")
+
+
 
 
 # register = CashRegister()
